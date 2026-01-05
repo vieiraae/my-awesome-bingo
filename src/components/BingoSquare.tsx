@@ -1,22 +1,26 @@
 import type { BingoSquareData } from '../types';
+import type { CSSProperties } from 'react';
 
 interface BingoSquareProps {
   square: BingoSquareData;
   isWinning: boolean;
   onClick: () => void;
+  style?: CSSProperties;
 }
 
-export function BingoSquare({ square, isWinning, onClick }: BingoSquareProps) {
+export function BingoSquare({ square, isWinning, onClick, style }: BingoSquareProps) {
   const baseClasses =
-    'relative flex items-center justify-center p-1 text-center border border-gray-300 rounded transition-all duration-150 select-none min-h-[60px] text-xs leading-tight';
+    'relative flex items-center justify-center p-1.5 text-center rounded-lg transition-all duration-200 select-none min-h-[60px] text-xs leading-tight shadow-sm';
 
   const stateClasses = square.isMarked
     ? isWinning
-      ? 'bg-amber-200 border-amber-400 text-amber-900'
-      : 'bg-marked border-marked-border text-green-800'
-    : 'bg-white text-gray-700 active:bg-gray-100';
+      ? 'bg-gradient-to-br from-bingo/40 to-caramel/50 border-2 border-bingo text-espresso shadow-md'
+      : 'bg-gradient-to-br from-marked to-latte border-2 border-marked-border text-espresso shadow-md'
+    : 'bg-cream border border-latte text-roast active:bg-latte active:scale-[0.97]';
 
-  const freeSpaceClasses = square.isFreeSpace ? 'font-bold text-sm' : '';
+  const freeSpaceClasses = square.isFreeSpace 
+    ? 'font-bold text-sm bg-gradient-to-br from-espresso to-roast text-cream border-espresso' 
+    : '';
 
   return (
     <button
@@ -25,10 +29,11 @@ export function BingoSquare({ square, isWinning, onClick }: BingoSquareProps) {
       className={`${baseClasses} ${stateClasses} ${freeSpaceClasses}`}
       aria-pressed={square.isMarked}
       aria-label={square.isFreeSpace ? 'Free space' : square.text}
+      style={style}
     >
       <span className="wrap-break-word hyphens-auto">{square.text}</span>
       {square.isMarked && !square.isFreeSpace && (
-        <span className="absolute top-0.5 right-0.5 text-green-600 text-xs">✓</span>
+        <span className="absolute top-0.5 right-0.5 text-cinnamon text-xs">☕</span>
       )}
     </button>
   );

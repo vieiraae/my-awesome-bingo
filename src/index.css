@@ -1,11 +1,26 @@
 @import 'tailwindcss';
 
 @theme {
-  --color-accent: #2563eb;
-  --color-accent-light: #3b82f6;
-  --color-marked: #dcfce7;
-  --color-marked-border: #22c55e;
-  --color-bingo: #fbbf24;
+  /* Cozy Coffee Shop Palette */
+  --color-espresso: #3C2415;
+  --color-roast: #5D4037;
+  --color-cinnamon: #D2691E;
+  --color-caramel: #C68642;
+  --color-latte: #F5E6D3;
+  --color-cream: #FFF8F0;
+  --color-foam: #FDFCFB;
+  --color-steam: #E8DED5;
+  
+  /* Semantic tokens */
+  --color-accent: #8B4513;
+  --color-accent-light: #A0522D;
+  --color-marked: #E6D5C3;
+  --color-marked-border: #A0522D;
+  --color-bingo: #DAA520;
+  
+  /* Typography */
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Nunito', system-ui, sans-serif;
 }
 
 html,
@@ -16,6 +31,44 @@ body,
 
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family: var(--font-body);
   -webkit-tap-highlight-color: transparent;
+  background: linear-gradient(180deg, var(--color-cream) 0%, var(--color-latte) 100%);
+}
+
+/* Cozy ambient background pattern */
+.cozy-bg {
+  background: 
+    radial-gradient(ellipse at 20% 80%, var(--color-steam) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, var(--color-latte) 0%, transparent 40%),
+    linear-gradient(180deg, var(--color-cream) 0%, var(--color-latte) 100%);
+}
+
+/* Steam rising animation */
+@keyframes steam {
+  0% { opacity: 0; transform: translateY(0) scale(1); }
+  50% { opacity: 0.6; }
+  100% { opacity: 0; transform: translateY(-20px) scale(1.2); }
+}
+
+@keyframes gentle-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+@keyframes warm-glow {
+  0%, 100% { box-shadow: 0 4px 20px rgba(139, 69, 19, 0.15); }
+  50% { box-shadow: 0 4px 25px rgba(139, 69, 19, 0.25); }
+}
+
+.animate-steam {
+  animation: steam 2s ease-out infinite;
+}
+
+.animate-float {
+  animation: gentle-float 3s ease-in-out infinite;
+}
+
+.animate-warm-glow {
+  animation: warm-glow 2s ease-in-out infinite;
 }

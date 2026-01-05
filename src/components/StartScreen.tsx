@@ -4,26 +4,53 @@ interface StartScreenProps {
 
 export function StartScreen({ onStart }: StartScreenProps) {
   return (
-    <div className="flex flex-col items-center justify-center min-h-full p-6 bg-gray-50">
+    <div className="flex flex-col items-center justify-center min-h-full p-6 cozy-bg">
       <div className="text-center max-w-sm">
-        <h1 className="text-4xl font-bold text-gray-900 mb-2">Soc Ops</h1>
-        <p className="text-lg text-gray-600 mb-8">Social Bingo</p>
+        {/* Coffee cup icon with steam */}
+        <div className="relative inline-block mb-4">
+          <span className="text-6xl">☕</span>
+          <span className="absolute -top-2 left-1/2 -translate-x-1/2 text-2xl opacity-40 animate-steam">~</span>
+        </div>
         
-        <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200 mb-8">
-          <h2 className="font-semibold text-gray-800 mb-3">How to play</h2>
-          <ul className="text-left text-gray-600 text-sm space-y-2">
-            <li>• Find people who match the questions</li>
-            <li>• Tap a square when you find a match</li>
-            <li>• Get 5 in a row to win!</li>
+        <h1 className="font-[family-name:var(--font-display)] text-4xl font-bold text-espresso mb-2 tracking-tight">
+          Café Bingo
+        </h1>
+        <p className="text-lg text-roast/70 mb-8 italic">Social Connections Over Coffee</p>
+        
+        {/* Menu board style card */}
+        <div className="bg-foam rounded-2xl p-6 shadow-lg border-2 border-latte mb-8 relative overflow-hidden">
+          {/* Decorative corner flourish */}
+          <div className="absolute top-2 left-2 text-caramel/30 text-xl">❧</div>
+          <div className="absolute bottom-2 right-2 text-caramel/30 text-xl rotate-180">❧</div>
+          
+          <h2 className="font-[family-name:var(--font-display)] font-semibold text-espresso mb-4 text-lg">
+            How to Play
+          </h2>
+          <ul className="text-left text-roast space-y-3 text-sm">
+            <li className="flex items-start gap-2">
+              <span className="text-cinnamon">☕</span>
+              <span>Find people who match the prompts</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-cinnamon">✦</span>
+              <span>Tap a square when you find a match</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-cinnamon">★</span>
+              <span>Get 5 in a row to win!</span>
+            </li>
           </ul>
         </div>
 
         <button
           onClick={onStart}
-          className="w-full bg-accent text-white font-semibold py-4 px-8 rounded-lg text-lg active:bg-accent-light transition-colors"
+          className="w-full bg-gradient-to-r from-espresso to-roast text-cream font-semibold py-4 px-8 rounded-xl text-lg shadow-lg active:scale-[0.98] active:shadow-md transition-all duration-150 animate-warm-glow"
         >
           Start Game
         </button>
+        
+        {/* Subtle footer text */}
+        <p className="mt-6 text-xs text-roast/40">☕ Brewed with warmth ☕</p>
       </div>
     </div>
   );
