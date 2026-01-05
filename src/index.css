@@ -61,20 +61,9 @@ body {
   50% { box-shadow: 0 4px 25px rgba(139, 69, 19, 0.25); }
 }
 
-@keyframes fadeSlideUp {
-  0% { 
-    opacity: 0; 
-    transform: translateY(20px); 
-  }
-  100% { 
-    opacity: 1; 
-    transform: translateY(0); 
-  }
-}
-
-@keyframes pulse-scale {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.02); }
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .animate-steam {
@@ -89,26 +78,26 @@ body {
   animation: warm-glow 2s ease-in-out infinite;
 }
 
-.animate-fade-slide-up {
-  animation: fadeSlideUp 0.6s ease-out forwards;
+.animate-fade-in {
+  animation: fade-in 0.6s ease-out forwards;
 }
 
-.animate-pulse-scale {
-  animation: pulse-scale 2s ease-in-out infinite;
+.animate-fade-in-delay-1 {
+  animation: fade-in 0.6s ease-out 0.2s forwards;
+  opacity: 0;
 }
 
-/* Accessibility: Disable animations for users who prefer reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  .animate-steam,
-  .animate-float,
-  .animate-warm-glow,
-  .animate-fade-slide-up,
-  .animate-pulse-scale {
-    animation: none;
-  }
-  
-  .animate-fade-slide-up {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.animate-fade-in-delay-2 {
+  animation: fade-in 0.6s ease-out 0.4s forwards;
+  opacity: 0;
+}
+
+.animate-fade-in-delay-3 {
+  animation: fade-in 0.6s ease-out 0.6s forwards;
+  opacity: 0;
+}
+
+.animate-fade-in-delay-4 {
+  animation: fade-in 0.6s ease-out 0.8s forwards;
+  opacity: 0;
 }
