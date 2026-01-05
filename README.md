@@ -11,7 +11,7 @@
 [![Built with React](https://img.shields.io/badge/React-19-61dafb.svg)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.9-blue.svg)](https://www.typescriptlang.org/)
 
-[🎮 Play Live Demo](#) • [📖 Workshop Guide](.lab/GUIDE.md) • [🐛 Report Bug](../../issues) • [✨ Request Feature](../../issues)
+[🎮 Play Live Demo](https://vieiraae.github.io/my-awesome-bingo/) • [📖 Workshop Guide](.lab/GUIDE.md) • [🐛 Report Bug](../../issues) • [✨ Request Feature](../../issues)
 
 </div>
 
