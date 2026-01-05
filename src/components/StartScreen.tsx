@@ -1,8 +1,18 @@
+import { questions } from '../data/questions';
+
 interface StartScreenProps {
   onStart: () => void;
 }
 
 export function StartScreen({ onStart }: StartScreenProps) {
+  // Select 4 sample prompts for floating effect
+  const samplePrompts = [
+    questions[2], // "has a pet"
+    questions[5], // "speaks more than 2 languages"
+    questions[12], // "loves cooking"
+    questions[18], // "has a hidden talent"
+  ];
+
   return (
     <div className="min-h-full overflow-y-auto cozy-bg">
       <div className="max-w-4xl mx-auto px-6 py-12">
@@ -118,14 +128,15 @@ export function StartScreen({ onStart }: StartScreenProps) {
           </div>
         </div>
 
-        {/* Enhanced CTA Section */}
+        {/* CTA button with staggered animation and pulse */}
         <div className="text-center animate-fade-in-delay-4">
-          <button
-            onClick={onStart}
-            className="w-full max-w-md mx-auto block bg-gradient-to-r from-espresso to-roast text-cream font-semibold py-5 px-8 rounded-xl text-xl shadow-lg active:scale-[0.98] active:shadow-md transition-all duration-150 animate-warm-glow mb-4"
-          >
-            Start Playing
-          </button>
+        <button
+          onClick={onStart}
+          className="w-full bg-gradient-to-r from-espresso to-roast text-cream font-semibold py-4 px-8 rounded-xl text-lg shadow-lg active:scale-[0.98] active:shadow-md transition-all duration-150 animate-warm-glow animate-pulse-scale animate-fade-slide-up opacity-0"
+          style={{ animationDelay: '0.6s', willChange: 'transform, opacity' }}
+        >
+          Start Game
+        </button>
           
           <p className="text-sm text-roast/60 mb-8">
             No account needed • Takes 5 minutes • Perfect for groups
