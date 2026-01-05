@@ -1,77 +1,10 @@
-import { questions } from '../data/questions';
+export type GameMode = 'bingo' | 'cards';
 
 interface StartScreenProps {
-  onStart: () => void;
-}
-
-interface PreviewSquare {
-  id: number;
-  text: string;
-  isMarked: boolean;
-  isFreeSpace: boolean;
-}
-
-// Generate a 3x3 preview board with random questions
-function generatePreviewBoard(): PreviewSquare[] {
-  const shuffled = [...questions].sort(() => Math.random() - 0.5);
-  const selected = shuffled.slice(0, 8); // 8 questions + 1 free space
-  
-  const board: PreviewSquare[] = [];
-  let questionIndex = 0;
-  
-  for (let i = 0; i < 9; i++) {
-    if (i === 4) { // Center square (index 4 in 3x3 grid)
-      board.push({
-        id: i,
-        text: FREE_SPACE,
-        isMarked: true,
-        isFreeSpace: true,
-      });
-    } else {
-      board.push({
-        id: i,
-        text: selected[questionIndex],
-        isMarked: false,
-        isFreeSpace: false,
-      });
-      questionIndex++;
-    }
-  }
-  
-  return board;
-}
-
-// Check for 3-in-a-row in the preview board
-function checkPreviewBingo(board: PreviewSquare[]): number[] | null {
-  const lines = [
-    [0, 1, 2], // Row 0
-    [3, 4, 5], // Row 1
-    [6, 7, 8], // Row 2
-    [0, 3, 6], // Col 0
-    [1, 4, 7], // Col 1
-    [2, 5, 8], // Col 2
-    [0, 4, 8], // Diagonal
-    [2, 4, 6], // Anti-diagonal
-  ];
-  
-  for (const line of lines) {
-    if (line.every(idx => board[idx].isMarked)) {
-      return line;
-    }
-  }
-  
-  return null;
+  onStart: (mode: GameMode) => void;
 }
 
 export function StartScreen({ onStart }: StartScreenProps) {
-  // Select 4 sample prompts for floating effect
-  const samplePrompts = [
-    questions[2], // "has a pet"
-    questions[5], // "speaks more than 2 languages"
-    questions[12], // "loves cooking"
-    questions[18], // "has a hidden talent"
-  ];
-
   return (
     <div className="min-h-full overflow-y-auto cozy-bg">
       <div className="max-w-4xl mx-auto px-6 py-12">
@@ -187,14 +120,33 @@ export function StartScreen({ onStart }: StartScreenProps) {
           </div>
         </div>
 
-        {/* CTA button with staggered animation and pulse */}
+        {/* CTA buttons - Choose Your Mode */}
         <div className="text-center animate-fade-in-delay-4">
-          <button
-            onClick={onStart}
-            className="w-full max-w-md mx-auto bg-gradient-to-r from-espresso to-roast text-cream font-semibold py-4 px-8 rounded-xl text-lg shadow-lg active:scale-[0.98] active:shadow-md transition-all duration-150 animate-warm-glow"
-          >
-            Start Your Game
-          </button>
+          <h2 className="font-[family-name:var(--font-display)] text-2xl font-semibold text-espresso mb-6">
+            Choose Your Game
+          </h2>
+          
+          <div className="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto mb-6">
+            {/* Bingo Board Mode */}
+            <button
+              onClick={() => onStart('bingo')}
+              className="flex-1 bg-gradient-to-r from-espresso to-roast text-cream font-semibold py-4 px-6 rounded-xl text-lg shadow-lg active:scale-[0.98] active:shadow-md transition-all duration-150 animate-warm-glow"
+            >
+              <span className="text-2xl block mb-1">🎯</span>
+              <span className="block">Bingo Board</span>
+              <span className="text-cream/70 text-sm font-normal">Get 5 in a row</span>
+            </button>
+            
+            {/* Card Deck Mode */}
+            <button
+              onClick={() => onStart('cards')}
+              className="flex-1 bg-gradient-to-r from-cinnamon to-caramel text-cream font-semibold py-4 px-6 rounded-xl text-lg shadow-lg active:scale-[0.98] active:shadow-md transition-all duration-150 hover:shadow-xl"
+            >
+              <span className="text-2xl block mb-1">🃏</span>
+              <span className="block">Card Shuffle</span>
+              <span className="text-cream/70 text-sm font-normal">Draw random cards</span>
+            </button>
+          </div>
           
           <p className="text-sm text-roast/60 mt-4 mb-8">
             No account needed • Takes 5 minutes • Perfect for groups
