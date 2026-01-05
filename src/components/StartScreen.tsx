@@ -4,6 +4,65 @@ interface StartScreenProps {
   onStart: () => void;
 }
 
+interface PreviewSquare {
+  id: number;
+  text: string;
+  isMarked: boolean;
+  isFreeSpace: boolean;
+}
+
+// Generate a 3x3 preview board with random questions
+function generatePreviewBoard(): PreviewSquare[] {
+  const shuffled = [...questions].sort(() => Math.random() - 0.5);
+  const selected = shuffled.slice(0, 8); // 8 questions + 1 free space
+  
+  const board: PreviewSquare[] = [];
+  let questionIndex = 0;
+  
+  for (let i = 0; i < 9; i++) {
+    if (i === 4) { // Center square (index 4 in 3x3 grid)
+      board.push({
+        id: i,
+        text: FREE_SPACE,
+        isMarked: true,
+        isFreeSpace: true,
+      });
+    } else {
+      board.push({
+        id: i,
+        text: selected[questionIndex],
+        isMarked: false,
+        isFreeSpace: false,
+      });
+      questionIndex++;
+    }
+  }
+  
+  return board;
+}
+
+// Check for 3-in-a-row in the preview board
+function checkPreviewBingo(board: PreviewSquare[]): number[] | null {
+  const lines = [
+    [0, 1, 2], // Row 0
+    [3, 4, 5], // Row 1
+    [6, 7, 8], // Row 2
+    [0, 3, 6], // Col 0
+    [1, 4, 7], // Col 1
+    [2, 5, 8], // Col 2
+    [0, 4, 8], // Diagonal
+    [2, 4, 6], // Anti-diagonal
+  ];
+  
+  for (const line of lines) {
+    if (line.every(idx => board[idx].isMarked)) {
+      return line;
+    }
+  }
+  
+  return null;
+}
+
 export function StartScreen({ onStart }: StartScreenProps) {
   // Select 4 sample prompts for floating effect
   const samplePrompts = [
@@ -135,7 +194,7 @@ export function StartScreen({ onStart }: StartScreenProps) {
           className="w-full bg-gradient-to-r from-espresso to-roast text-cream font-semibold py-4 px-8 rounded-xl text-lg shadow-lg active:scale-[0.98] active:shadow-md transition-all duration-150 animate-warm-glow animate-pulse-scale animate-fade-slide-up opacity-0"
           style={{ animationDelay: '0.6s', willChange: 'transform, opacity' }}
         >
-          Start Game
+          Start Your Game
         </button>
           
           <p className="text-sm text-roast/60 mb-8">
