@@ -189,15 +189,14 @@ export function StartScreen({ onStart }: StartScreenProps) {
 
         {/* CTA button with staggered animation and pulse */}
         <div className="text-center animate-fade-in-delay-4">
-        <button
-          onClick={onStart}
-          className="w-full bg-gradient-to-r from-espresso to-roast text-cream font-semibold py-4 px-8 rounded-xl text-lg shadow-lg active:scale-[0.98] active:shadow-md transition-all duration-150 animate-warm-glow animate-pulse-scale animate-fade-slide-up opacity-0"
-          style={{ animationDelay: '0.6s', willChange: 'transform, opacity' }}
-        >
-          Start Your Game
-        </button>
+          <button
+            onClick={onStart}
+            className="w-full max-w-md mx-auto bg-gradient-to-r from-espresso to-roast text-cream font-semibold py-4 px-8 rounded-xl text-lg shadow-lg active:scale-[0.98] active:shadow-md transition-all duration-150 animate-warm-glow"
+          >
+            Start Your Game
+          </button>
           
-          <p className="text-sm text-roast/60 mb-8">
+          <p className="text-sm text-roast/60 mt-4 mb-8">
             No account needed • Takes 5 minutes • Perfect for groups
           </p>
           
