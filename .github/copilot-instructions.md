@@ -22,6 +22,48 @@ useBingoGame (hook) → App.tsx → Screen Components → BingoBoard → BingoSq
 | `src/data/questions.ts` | 24 social/icebreaker prompts + `FREE_SPACE` constant |
 | `src/types/index.ts` | Domain types: `BingoSquareData`, `BingoLine`, `GameState` |
 
+## Design System: Cozy Coffee Shop
+
+### Theme Philosophy
+Warm, inviting café aesthetic — rich browns, creamy tones, distinctive serif typography, and gentle animations that evoke comfort and connection.
+
+### Color Palette
+| Token | Hex | Usage |
+|-------|-----|-------|
+| `espresso` | `#3C2415` | Primary dark (headers, text, free space) |
+| `roast` | `#5D4037` | Secondary dark (body text, gradients) |
+| `cinnamon` | `#D2691E` | Accent warm (icons, highlights) |
+| `caramel` | `#C68642` | Accent gold (decorative elements) |
+| `latte` | `#F5E6D3` | Light background (cards, borders) |
+| `cream` | `#FFF8F0` | Base background |
+| `foam` | `#FDFCFB` | Card surfaces |
+| `steam` | `#E8DED5` | Subtle gradients |
+| `bingo` | `#DAA520` | Winning state highlight |
+
+### Typography
+- **Display**: `Playfair Display` (serif) — headings, titles, celebration text
+- **Body**: `Nunito` — UI text, prompts, buttons
+
+### Key Visual Elements
+- **Backgrounds**: Layered radial gradients (`.cozy-bg` utility)
+- **Cards**: Rounded corners (`rounded-2xl`), subtle shadows, cream backgrounds
+- **Buttons**: Espresso-to-roast gradients with warm glow animation
+- **Marked states**: Coffee cup icon (☕) instead of checkmark
+- **Decorative**: Fleurons (❧) for flourishes, steam animations on coffee cups
+
+### Animations
+| Class | Effect |
+|-------|--------|
+| `animate-steam` | Rising steam on coffee cups |
+| `animate-float` | Gentle vertical bobbing |
+| `animate-warm-glow` | Pulsing shadow on CTAs |
+
+### Component Patterns
+- **Free space**: Espresso gradient background, cream text
+- **Marked square**: Latte gradient with cinnamon border
+- **Winning square**: Golden caramel/bingo gradient
+- **Modal**: Backdrop blur, floating coffee cup with steam
+
 ## Conventions
 - **Components**: Named exports, `{Name}Props` interface, `aria-pressed`/`aria-label` for a11y
 - **Styling**: Tailwind v4 with `@theme { }` tokens in `src/index.css`; mobile-first with `active:` states
