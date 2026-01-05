@@ -112,7 +112,7 @@ export function StartScreen({ onStart }: StartScreenProps) {
         
         {/* Brief instruction text */}
         <p className="text-sm text-roast mb-3 px-4">
-          Find people matching each prompt. Get 5 in a row!
+          Find people matching each prompt. Get five in a row!
         </p>
 
         {/* Interactive Preview Label */}
@@ -157,7 +157,7 @@ export function StartScreen({ onStart }: StartScreenProps) {
                   aria-label={square.isFreeSpace ? 'Free space' : square.text}
                   style={{ animationDelay: `${index * 50}ms` }}
                 >
-                  <span className="wrap-break-word hyphens-auto leading-tight">
+                  <span className="break-words hyphens-auto leading-tight">
                     {square.text}
                   </span>
                   {square.isMarked && !square.isFreeSpace && (
